@@ -1,0 +1,22 @@
+<!doctype html>
+<html>
+<head><title>Page title</title></head>
+<body>
+<table>
+    <tr>
+        <th>region \ datum</th>
+        {% for date,value in fhm.cases.Totalt_antal_fall %}
+            <th>{{ date }}</th>
+        {% endfor %}
+    <tr>
+        {% for region,cases in fhm.cases %}
+    </tr>
+    <th>{{ region }}</th>
+    {% for date,value in cases %}
+        <td>{{ value }}</td>
+    {% endfor %}
+    </tr>
+    {% endfor %}
+</table>
+</body>
+</html>
