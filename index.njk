@@ -1,21 +1,21 @@
 <!doctype html>
-<html>
+<html lang="sv">
 <head><title>Page title</title></head>
 <body>
 <table>
     <tr>
-        <th>antal fall</th>
-        {% for date,value in fhm.cases.Totalt_antal_fall %}
-            <th>{{ date }}</th>
+        <th>Statistikdatum</th>
+        {% for region in fhm.cases.columns %}
+            <th>{{ region }}</th>
         {% endfor %}
-    <tr>
-        {% for region,cases in fhm.cases %}
     </tr>
-    <th>{{ region }}</th>
-    {% for date,value in cases %}
-        <td>{{ value }}</td>
-    {% endfor %}
-    </tr>
+    {% for value in fhm.cases.values %}
+        <tr>
+            <th>{{ fhm.cases.rows[loop.index0] }}</th>
+            {% for v in value %}
+                <td>{{ v }}</td>
+            {% endfor %}
+        </tr>
     {% endfor %}
 </table>
 </body>

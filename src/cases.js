@@ -1,40 +1,36 @@
 const format = require("date-fns/format");
 const isValid = require("date-fns/isValid");
 const parse = require("date-fns/parse");
+const _ = require("lodash");
 
-module.exports = function cases({Sheets}) {
+module.exports = function cases({ Sheets }) {
   const sheet = Sheets?.["Antal per dag region"];
   if (!sheet) return {};
 
   const entries = Object.entries(sheet);
 
-  const columnKeys = Object.fromEntries(
-    entries
-      .filter(([cell]) => /^[^A]1$/.test(cell))
-      .map(([cell, value]) => [/^(\D+)(\d+)$/.exec(cell)[1], value.v])
+  const rows = _.groupBy(
+    _.reject(entries, ([k]) => _.startsWith(k, "!")),
+    ([k]) => k.substr(1)
   );
 
-  const rowKeys = Object.fromEntries(
-    entries
-      .filter(([cell]) => /^A\d+$/.test(cell))
-      .filter(([cell]) => cell !== "A1")
-      .map(([cell, value]) => [/^(\D+)(\d+)$/.exec(cell)[2], value.w])
-  );
-
-  const columns = Object.fromEntries(
-    Object.entries(columnKeys).map(([, value]) => [value, {}])
-  );
-
-  entries
-    .filter(([cell]) => !/^A/.test(cell))
-    .filter(([cell]) => !/\D1$/.test(cell))
-    .forEach(([cell, value]) => {
-      const match = /^(\D+)(\d+)$/.exec(cell);
-      if (match)
-        columns[columnKeys[match[1]]][iso(rowKeys[match[2]])] = value.v;
-    });
-  return columns;
-}
+  return {
+    columns: _.map(
+      _.filter(entries, ([cell]) => /^[^A]1$/.test(cell)),
+      ([, value]) => value.v
+    ),
+    rows: _.map(
+      _.filter(
+        _.filter(entries, ([cell]) => /^A\d+$/.test(cell)),
+        ([cell]) => cell !== "A1"
+      ),
+      ([, value]) => value.w
+    ),
+    values: _.tail(
+      _.map(rows, (row) => _.map(_.tail(row), ([, value]) => value.v))
+    ),
+  };
+};
 
 function iso(date) {
   const parsed = parse(date, "M/d/yy", new Date());
