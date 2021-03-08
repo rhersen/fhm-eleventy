@@ -24,7 +24,7 @@ module.exports = function cases({ Sheets }) {
         _.filter(entries, ([cell]) => /^A\d+$/.test(cell)),
         ([cell]) => cell !== "A1"
       ),
-      ([, value]) => value.w
+      ([, value]) => iso(value.w)
     ),
     values: _.tail(
       _.map(rows, (row) => _.map(_.tail(row), ([, value]) => value.v))

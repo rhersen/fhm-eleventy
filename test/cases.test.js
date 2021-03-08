@@ -26,7 +26,7 @@ describe("cases", function () {
           },
         },
       }).rows
-    ).to.deep.equal(["2/4/20"]);
+    ).to.deep.equal(["2020-02-04"]);
   });
 
   it("returns a column header", () =>
@@ -79,7 +79,7 @@ describe("cases", function () {
       },
     });
     expect(actual.columns).to.deep.equal(["Totalt_antal_fall"]);
-    expect(actual.rows).to.deep.equal(["2/4/20"]);
+    expect(actual.rows).to.deep.equal(["2020-02-04"]);
     expect(actual.values).to.deep.equal([[1]]);
   });
 });
