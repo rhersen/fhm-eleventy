@@ -17,6 +17,12 @@
             {% endfor %}
         </tr>
     {% endfor %}
+    <tr>
+        <th>Statistikdatum</th>
+        {% for region in fhm.cases.columns %}
+            <th>{{ region }}</th>
+        {% endfor %}
+    </tr>
 </table>
 </body>
 </html>
