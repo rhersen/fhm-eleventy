@@ -26,7 +26,7 @@ module.exports = function cases({ Sheets }) {
       ),
       ([, value]) => iso(value.w)
     ),
-    values: _.tail(
+    cells: _.tail(
       _.map(rows, (row) => _.map(_.tail(row), ([, value]) => value.v))
     ),
   };

@@ -9,11 +9,11 @@
             <th>{{ region }}</th>
         {% endfor %}
     </tr>
-    {% for value in fhm.cases.values %}
+    {% for cellArray in fhm.cases.cells %}
         <tr>
             <th>{{ fhm.cases.rows[loop.index0] }}</th>
-            {% for v in value %}
-                <td>{{ v }}</td>
+            {% for cell in cellArray %}
+                <td bgcolor={{ cell.bgcolor }}>{{ cell.value }}</td>
             {% endfor %}
         </tr>
     {% endfor %}

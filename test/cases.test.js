@@ -8,7 +8,7 @@ describe("cases", function () {
     expect(subject({ Sheets: { "Antal per dag region": {} } })).to.deep.equal({
       columns: [],
       rows: [],
-      values: [],
+      cells: [],
     });
     expect(
       subject({
@@ -80,6 +80,6 @@ describe("cases", function () {
     });
     expect(actual.columns).to.deep.equal(["Totalt_antal_fall"]);
     expect(actual.rows).to.deep.equal(["2020-02-04"]);
-    expect(actual.values).to.deep.equal([[1]]);
+    expect(actual.cells).to.deep.equal([[1]]);
   });
 });

@@ -1,5 +1,6 @@
 const axios = require("axios");
 const xlsx = require("xlsx");
+const addColor = require("../src/addColor.js");
 const average = require("../src/average.js");
 const cases = require("../src/cases.js");
 const divideValuesByPopulation = require("../src/divideValuesByPopulation.js");
@@ -41,17 +42,17 @@ const population = {
 };
 
 module.exports = async () => {
-  const { columns, rows, values } = cases(await getBook());
+  const { columns, rows, cells } = cases(await getBook());
   return {
     cases: {
       columns,
       rows,
-      values: divideValuesByPopulation(
-        average(values, 14),
+      cells: addColor(divideValuesByPopulation(
+        average(cells, 14),
         columns,
         population,
         1e5
-      ),
+      )),
     },
     population: population,
   };
