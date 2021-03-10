@@ -1,7 +1,7 @@
 const expect = require("chai").expect;
-const subject = require("../src/average.js");
+const subject = require("../src/sum.js");
 
-describe("average", function () {
+describe("sum", function () {
   it("returns empty array", () => expect(subject([])).to.deep.equal([]));
   it("returns array of empty array", () =>
     expect(subject([[]])).to.deep.equal([[]]));

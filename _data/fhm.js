@@ -1,9 +1,9 @@
 const axios = require("axios");
 const xlsx = require("xlsx");
 const addColor = require("../src/addColor.js");
-const average = require("../src/average.js");
 const cases = require("../src/cases.js");
 const divideValuesByPopulation = require("../src/divideValuesByPopulation.js");
+const sum = require("../src/sum.js");
 
 async function getBook() {
   const { data, status, statusText } = await axios.get(
@@ -47,12 +47,12 @@ module.exports = async () => {
     cases: {
       columns,
       rows,
-      cells: addColor(divideValuesByPopulation(
-        average(cells, 14),
-        columns,
-        population,
-        1e5
-      )),
+      cells7: addColor(
+        divideValuesByPopulation(sum(cells, 7), columns, population, 1e6 / 7)
+      ),
+      cells14: addColor(
+        divideValuesByPopulation(sum(cells, 14), columns, population, 1e5)
+      ),
     },
     population: population,
   };
