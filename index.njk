@@ -1,28 +1,20 @@
 <!doctype html>
 <html lang="sv">
-<head><title>Page title</title></head>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>fhm-eleventy</title>
+</head>
 <body>
-<table>
-    <tr>
-        <th>Statistikdatum</th>
-        {% for region in fhm.cases.columns %}
-            <th>{{ region }}</th>
-        {% endfor %}
-    </tr>
-    {% for cellArray in fhm.cases.cells %}
-        <tr>
-            <th>{{ fhm.cases.rows[loop.index0] }}</th>
-            {% for cell in cellArray %}
-                <td bgcolor={{ cell.bgcolor }}>{{ cell.value }}</td>
-            {% endfor %}
-        </tr>
-    {% endfor %}
-    <tr>
-        <th>Statistikdatum</th>
-        {% for region in fhm.cases.columns %}
-            <th>{{ region }}</th>
-        {% endfor %}
-    </tr>
-</table>
+<nav>
+    <ul>
+        <li><a href="/">Home</a></li>
+        <li><a href="/7">7-day rolling average per million people</a></li>
+        <li><a href="/14">14-day case notification rate per 100000</a></li>
+        <li><a href="/change">7-day average change compared to previous 7-day period</a></li>
+        <li><a href="/deaths">deaths</a></li>
+        <li><a href="/map">map</a></li>
+        <li><a href="/chart">chart of 7-day average</a></li>
+    </ul>
+</nav>
 </body>
 </html>
