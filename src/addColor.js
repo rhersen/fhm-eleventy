@@ -1,10 +1,10 @@
 const _ = require("lodash");
 
-module.exports = (arrays) =>
+module.exports = (arrays, scale = 1) =>
   _.map(arrays, (array) =>
     _.map(array, (value) => ({
       value,
-      bgcolor: bgcolor(value),
+      bgcolor: bgcolor(value * scale),
     }))
   );
 

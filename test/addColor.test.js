@@ -22,4 +22,24 @@ describe("addColor", function () {
         { bgcolor: "#870202", value: 999 },
       ],
     ]));
+
+  it("adds color according to factor", () =>
+    expect(
+      subject(
+        [
+          [70, 10],
+          [744, 679],
+        ],
+        1.4
+      )
+    ).to.deep.equal([
+      [
+        { bgcolor: "#e79402", value: 70 },
+        { bgcolor: "#f5d664", value: 10 },
+      ],
+      [
+        { bgcolor: "#870202", value: 744 },
+        { bgcolor: "#b61c00", value: 679 },
+      ],
+    ]));
 });
