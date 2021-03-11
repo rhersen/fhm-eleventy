@@ -46,14 +46,14 @@ module.exports = async () => {
   return {
     cases: {
       columns,
-      rows,
+      rows: rows.reverse(),
       cells7: addColor(
         divideValuesByPopulation(sum(cells, 7), columns, population, 1e6 / 7),
         1.4
-      ),
+      ).reverse(),
       cells14: addColor(
         divideValuesByPopulation(sum(cells, 14), columns, population, 1e5)
-      ),
+      ).reverse(),
     },
     population: population,
   };
