@@ -4,10 +4,13 @@ const subject = require("../src/addColor.js");
 describe("addColor", function () {
   it("adds color", () =>
     expect(
-      subject([
-        [90, 10, 0, 360],
-        [720, 180, 40, 999],
-      ])
+      subject(
+        [
+          [90, 10, 0, 360],
+          [720, 180, 40, 999],
+        ],
+        "14"
+      )
     ).to.deep.equal([
       [
         { bgcolor: "#e79402", value: 90 },
@@ -30,7 +33,7 @@ describe("addColor", function () {
           [70, 10],
           [744, 679],
         ],
-        1.4
+        "7"
       )
     ).to.deep.equal([
       [
