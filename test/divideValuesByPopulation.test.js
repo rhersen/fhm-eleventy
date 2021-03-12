@@ -39,17 +39,4 @@ describe("divideValuesByPopulation", function () {
         100
       )
     ).to.deep.equal([[475], [1525], [1050]]));
-
-  it("rounds", () =>
-    expect(
-      subject(
-        [[19], [61], [42]],
-        ["Totalt_antal_fall", "Blekinge"],
-        {
-          Totalt_antal_fall: 4,
-          Blekinge: 2,
-        },
-        100 / 13
-      )
-    ).to.deep.equal([[36.5], [117.3], [80.8]]));
 });
