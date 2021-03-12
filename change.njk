@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="sv">
+<head><title>senaste 7 dagarna jämfört med de 7 föregående</title></head>
+<body>
+<table>
+    <tr>
+        <th>Statistikdatum</th>
+        {% for region in fhm.cases.columns %}
+            <th>{{ region }}</th>
+        {% endfor %}
+    </tr>
+    {% for cellArray in fhm.cases.cellsDiff %}
+        <tr>
+            <th>{{ fhm.cases.rows[loop.index0] }}</th>
+            {% for cell in cellArray %}
+                <td bgcolor={{ cell.bgcolor }}>{{ cell.value }}</td>
+            {% endfor %}
+        </tr>
+    {% endfor %}
+    <tr>
+        <th>Statistikdatum</th>
+        {% for region in fhm.cases.columns %}
+            <th>{{ region }}</th>
+        {% endfor %}
+    </tr>
+</table>
+</body>
+</html>

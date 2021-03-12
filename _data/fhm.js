@@ -4,6 +4,7 @@ const addColor = require("../src/addColor.js");
 const cases = require("../src/cases.js");
 const divideValuesByPopulation = require("../src/divideValuesByPopulation.js");
 const sum = require("../src/sum.js");
+const diff = require("../src/diff.js");
 
 async function getBook() {
   const { data, status, statusText } = await axios.get(
@@ -55,6 +56,7 @@ module.exports = async () => {
         divideValuesByPopulation(sum(cells, 14), columns, population, 1e5),
         "14"
       ).reverse(),
+      cellsDiff: addColor(diff(cells, 7)).reverse(),
     },
   };
 };
