@@ -55,6 +55,5 @@ module.exports = async () => {
         divideValuesByPopulation(sum(cells, 14), columns, population, 1e5)
       ).reverse(),
     },
-    population: population,
   };
 };
