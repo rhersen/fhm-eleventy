@@ -56,7 +56,7 @@ module.exports = async () => {
         divideValuesByPopulation(sum(cells, 14), columns, population, 1e5),
         "14"
       ).reverse(),
-      cellsDiff: addColor(diff(cells, 7)).reverse(),
+      cellsDiff: addColor(diff(cells, 7), "diff").reverse(),
     },
   };
 };
