@@ -6,11 +6,13 @@ module.exports = (rows, n) =>
     const [prev, curr] = _.chunk(prevAndCurr, prevAndCurr.length / 2);
     const range = _.range(0, _.size(prev?.[0]));
 
-    return _.map(range, quotient);
+    return _.map(range, percentChange);
 
-    function quotient(i) {
+    function percentChange(i) {
       return (
-        _.reduce(curr, sumAllColumns)[i] / _.reduce(prev, sumAllColumns)[i]
+        (_.reduce(curr, sumAllColumns)[i] / _.reduce(prev, sumAllColumns)[i] -
+          1) *
+        100
       );
     }
 
