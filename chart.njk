@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="sv">
+<head>
+    <title>
+        diagram över 7 dagars rullande medelvärde per miljon
+    </title>
+    <style>
+        .chart line {
+            stroke: #bbb;
+            stroke-width: 1;
+        }
+    </style>
+</head>
+<body>
+<div class="chart">
+    <svg viewBox="0 0 800 600">
+        {% for i in range(1, 14) %}
+            <line x1="0" y1={{ 100 * i * 600 / 1400 }} x2="800" y2={{ 100 * i * 600 / 1400 }}></line>
+        {% endfor %}
+    </svg>
+</div>
+</body>
+</html>
