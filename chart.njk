@@ -5,6 +5,30 @@
         diagram över 7 dagars rullande medelvärde per miljon
     </title>
     <style>
+        .chart {
+            display: grid;
+            grid-template-columns: max-content auto;
+        }
+
+        .chart .y-values {
+            grid-column: 2;
+            display: flex;
+            flex-direction: column-reverse;
+            justify-content: space-evenly;
+            margin: 12px;
+        }
+
+        .chart svg {
+            grid-column: 1;
+            height: 600px;
+            border: black 2px solid;
+        }
+
+        polyline {
+            stroke-width: 3px;
+            stroke: red;
+        }
+
         .chart line {
             stroke: #bbb;
             stroke-width: 1;
@@ -18,6 +42,12 @@
             <line x1="0" y1={{ 100 * i * 600 / 1400 }} x2="800" y2={{ 100 * i * 600 / 1400 }}></line>
         {% endfor %}
     </svg>
-</div>
+    <div class="y-values">
+        {% for i in range(1, 14) %}
+            <div class="y-value">
+                {{ i * 100 }}
+            </div>
+        {% endfor %}
+    </div>
 </body>
 </html>
