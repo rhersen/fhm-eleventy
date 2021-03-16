@@ -44,19 +44,28 @@ const population = {
 
 module.exports = async () => {
   const { columns, rows, cells } = cases(await getBook());
+  const values7 = divideValuesByPopulation(
+    sum(cells, 7),
+    columns,
+    population,
+    1e6 / 7
+  );
   return {
     cases: {
       columns,
       rows: rows.reverse(),
-      cells7: addColor(
-        divideValuesByPopulation(sum(cells, 7), columns, population, 1e6 / 7),
-        "7"
-      ).reverse(),
+      cells7: addColor(values7, "7").reverse(),
       cells14: addColor(
         divideValuesByPopulation(sum(cells, 14), columns, population, 1e5),
         "14"
       ).reverse(),
       cellsDiff: addColor(diff(cells, 7), "diff").reverse(),
+      chart: {
+        points: values7.map((a, i) => [
+          (i * 800) / values7.length,
+          600 - (a[0] * 600) / 1400,
+        ]),
+      },
     },
   };
 };
