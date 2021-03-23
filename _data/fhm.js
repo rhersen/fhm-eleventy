@@ -50,6 +50,9 @@ module.exports = async () => {
     population,
     1e6 / 7
   );
+  const width = 800;
+  const height = 600;
+  const max = 1400;
   return {
     cases: {
       columns,
@@ -61,9 +64,12 @@ module.exports = async () => {
       ).reverse(),
       cellsDiff: addColor(diff(cells, 7), "diff").reverse(),
       chart: {
+        width,
+        height,
+        max,
         points: values7.map((a, i) => [
-          (i * 800) / values7.length,
-          600 - (a[0] * 600) / 1400,
+          (i * width) / values7.length,
+          height - (a[0] * height) / max,
         ]),
       },
     },

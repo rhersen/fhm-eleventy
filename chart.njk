@@ -37,14 +37,15 @@
 </head>
 <body>
 <div class="chart">
-    <svg viewBox="0 0 800 600">
-        {% for i in range(1, 14) %}
-            <line x1="0" y1={{ 100 * i * 600 / 1400 }} x2="800" y2={{ 100 * i * 600 / 1400 }}></line>
+    <svg viewBox="0 0 {{ fhm.cases.chart.width }} {{ fhm.cases.chart.height }}">
+        {% for i in range(1, fhm.cases.chart.max / 100) %}
+            <line x1="0" y1={{ 100 * i * fhm.cases.chart.height / fhm.cases.chart.max }} x2={{ fhm.cases.chart.width }}
+                  y2={{ 100 * i * fhm.cases.chart.height / fhm.cases.chart.max }}></line>
         {% endfor %}
         <polyline fill="none" points={{ fhm.cases.chart.points }}/>
     </svg>
     <div class="y-values">
-        {% for i in range(1, 14) %}
+        {% for i in range(1, fhm.cases.chart.max / 100) %}
             <div class="y-value">
                 {{ i * 100 }}
             </div>
