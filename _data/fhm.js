@@ -63,15 +63,16 @@ module.exports = async () => {
         "14"
       ).reverse(),
       cellsDiff: addColor(diff(cells, 7), "diff").reverse(),
-      chart: {
+      charts: columns.map((column, columnIndex) => ({
+        region: column.toLowerCase(),
         width,
         height,
         max,
-        points: values7.map((a, i) => [
-          (i * width) / values7.length,
-          height - (a[0] * height) / max,
+        points: values7.map((a, rowIndex) => [
+          (rowIndex * width) / values7.length,
+          height - (a[columnIndex] * height) / max,
         ]),
-      },
+      })),
     },
   };
 };
