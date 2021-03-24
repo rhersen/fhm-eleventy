@@ -1,0 +1,19 @@
+<html lang="sv">
+<head>
+    <title>
+        karta
+    </title>
+</head>
+<body>
+<div class="map">
+    <svg viewBox="10 0 15 15">
+        {% for region in fhm.cases.map %}
+            <polygon
+                    points={{ region.points }}
+                    fill={{ region.bgcolor }}
+            ></polygon>
+        {% endfor %}
+    </svg>
+</div>
+</body>
+</html>
