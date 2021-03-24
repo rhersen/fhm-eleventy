@@ -159,14 +159,31 @@ module.exports = async () => {
           height - (a[columnIndex] * height) / max,
         ]),
       })),
-      map: _.map(_.first(cells14), ({ value, bgcolor }, i) => ({
-        value,
-        bgcolor,
-        points: _.map(coordinates[regionNames[i]], (coord) => [
-          coord.x,
-          70 - coord.y,
-        ]).toString(),
-      })),
+      map: _.map(_.first(cells14), ({ value, bgcolor }, i) => {
+        const coordinate = coordinates[regionNames[i]];
+        const points = _.map(coordinate, xy);
+
+        return {
+          value,
+          bgcolor,
+          points: points.toString(),
+          center: { x: centerX(points), y: centerY(points) },
+        };
+
+        function xy(coord) {
+          return [coord.x, 70 - coord.y];
+        }
+
+        function centerX(points) {
+          const values = points.map(([x]) => x);
+          return (Math.min(...values) + Math.max(...values)) / 2;
+        }
+
+        function centerY(points) {
+          const values = points.map(([, y]) => y);
+          return (Math.min(...values) + Math.max(...values)) / 2;
+        }
+      }),
     },
   };
 };

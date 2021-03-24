@@ -3,6 +3,11 @@
     <title>
         karta
     </title>
+    <style>
+        .map {
+            font-family: sans-serif;
+        }
+    </style>
 </head>
 <body>
 <div class="map">
@@ -12,6 +17,14 @@
                     points={{ region.points }}
                     fill={{ region.bgcolor }}
             ></polygon>
+            <text
+                    x={{ region.center.x }}
+                    y={{ region.center.y + 0.2 }}
+                    font-size="0.5"
+                    text-anchor="middle"
+            >
+                {{ region.value | round }}
+            </text>
         {% endfor %}
     </svg>
 </div>
