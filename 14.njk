@@ -3,38 +3,32 @@
 <head>
     <title>14 dagars fall per 100000</title>
     <style>
-        th {
-            font-family: sans-serif;
+        .table {
+            display: grid;
+            grid-auto-flow: row;
+            grid-template-columns:max-content repeat(22, 1fr);
+            grid-template-rows:repeat(416, 1fr)
         }
 
-        td {
+        .cell {
             font-family: sans-serif;
             color: white;
+            overflow: hidden;
         }
     </style>
 </head>
 <body>
-<table>
-    <tr>
-        <th>Statistikdatum</th>
-        {% for region in fhm.cases.columns %}
-            <th>{{ region }}</th>
-        {% endfor %}
-    </tr>
-    {% for cellArray in fhm.cases.cells14 %}
-        <tr>
-            <th>{{ fhm.cases.rows[loop.index0] }}</th>
-            {% for cell in cellArray %}
-                <td bgcolor={{ cell.bgcolor }}>{{ cell.value }}</td>
-            {% endfor %}
-        </tr>
+<div class="table">
+    <span>Statistikdatum</span>
+    {% for region in fhm.cases.columns %}
+        <span>{{ region }}</span>
     {% endfor %}
-    <tr>
-        <th>Statistikdatum</th>
-        {% for region in fhm.cases.columns %}
-            <th>{{ region }}</th>
+    {% for cellArray in fhm.cases.cells14 %}
+        <span>{{ fhm.cases.rows[loop.index0] }}</span>
+        {% for cell in cellArray %}
+            <span class="cell" style={{ 'background-color:' + cell.bgcolor }}>{{ cell.value }}</span>
         {% endfor %}
-    </tr>
-</table>
+    {% endfor %}
+</div>
 </body>
 </html>
