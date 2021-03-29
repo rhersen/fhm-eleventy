@@ -1,28 +1,38 @@
 <!doctype html>
 <html lang="sv">
-<head><title>7 dagars rullande medelvärde per miljon</title></head>
+<head>
+    <title>7 dagars rullande medelvärde per miljon</title>
+    <style>
+        .table {
+            display: grid;
+            grid-auto-flow: row;
+            grid-template-columns:max-content repeat(22, 1fr);
+        }
+
+        .region {
+            overflow: hidden;
+        }
+
+        .cell {
+            font-family: sans-serif;
+            color: white;
+            overflow: hidden;
+            text-align: center;
+        }
+    </style>
+</head>
 <body>
-<table>
-    <tr>
-        <th>Statistikdatum</th>
+<div class="table">
+    <span>Statistikdatum</span>
         {% for region in fhm.cases.columns %}
-            <th>{{ region }}</th>
+        <span class="region">{{ region }}</span>
         {% endfor %}
-    </tr>
     {% for cellArray in fhm.cases.cells7 %}
-        <tr>
-            <th>{{ fhm.cases.rows[loop.index0] }}</th>
+        <span>{{ fhm.cases.rows[loop.index0] }}</span>
             {% for cell in cellArray %}
-                <td bgcolor={{ cell.bgcolor }}>{{ cell.value }}</td>
-            {% endfor %}
-        </tr>
+            <span class="cell" style={{ 'background-color:' + cell.bgcolor }}>{{ cell.value | round }}</span>
     {% endfor %}
-    <tr>
-        <th>Statistikdatum</th>
-        {% for region in fhm.cases.columns %}
-            <th>{{ region }}</th>
         {% endfor %}
-    </tr>
-</table>
+</div>
 </body>
 </html>
