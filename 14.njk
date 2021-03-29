@@ -7,13 +7,17 @@
             display: grid;
             grid-auto-flow: row;
             grid-template-columns:max-content repeat(22, 1fr);
-            grid-template-rows:repeat(416, 1fr)
+        }
+
+        .region {
+            overflow: hidden;
         }
 
         .cell {
             font-family: sans-serif;
             color: white;
             overflow: hidden;
+            text-align: center;
         }
     </style>
 </head>
@@ -21,12 +25,12 @@
 <div class="table">
     <span>Statistikdatum</span>
     {% for region in fhm.cases.columns %}
-        <span>{{ region }}</span>
+        <span class="region">{{ region }}</span>
     {% endfor %}
     {% for cellArray in fhm.cases.cells14 %}
         <span>{{ fhm.cases.rows[loop.index0] }}</span>
         {% for cell in cellArray %}
-            <span class="cell" style={{ 'background-color:' + cell.bgcolor }}>{{ cell.value }}</span>
+            <span class="cell" style={{ 'background-color:' + cell.bgcolor }}>{{ cell.value | round }}</span>
         {% endfor %}
     {% endfor %}
 </div>
