@@ -44,6 +44,7 @@ permalink: "charts/{{ chart.region }}/"
 </head>
 <body>
 <nav>
+    <a href="/">Hem</a>
     {% for column in fhm.cases.columns %}
         <a href={{ ('/charts/' ~ column) | lower }}>{{ column }}</a>
     {% endfor %}
