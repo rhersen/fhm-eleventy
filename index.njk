@@ -3,6 +3,11 @@
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>fhm-eleventy</title>
+    <style>
+        td {
+            color: white;
+        }
+    </style>
 </head>
 <body>
 <nav>
@@ -15,5 +20,17 @@
         <li><a href="/charts/totalt_antal_fall">diagram</a></li>
     </ul>
 </nav>
+<table>
+    <tr>
+        <th>Region</th>
+        <th>14</th>
+    </tr>
+    {% for row in fhm.cases.latest.rows %}
+        <tr bgcolor={{ row.bgcolor }}>
+            <td>{{ row.regionName }}</td>
+            <td>{{ row.value | round }}</td>
+        </tr>
+    {% endfor %}
+</table>
 </body>
 </html>

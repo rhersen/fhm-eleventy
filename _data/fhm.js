@@ -38,6 +38,8 @@ module.exports = async () => {
     "14"
   ).reverse();
 
+  const latest14 = _.first(cells14);
+
   return {
     cases: {
       columns,
@@ -55,7 +57,16 @@ module.exports = async () => {
           height - (a[columnIndex] * height) / max,
         ]),
       })),
-      map: _.map(_.first(cells14), ({ value, bgcolor }, i) => {
+      latest: {
+        rows: _.sortBy(
+          _.map(latest14, (entry, i) => ({
+            ...entry,
+            regionName: regionNames[i],
+          })),
+          ({ value }) => -value
+        ),
+      },
+      map: _.map(latest14, ({ value, bgcolor }, i) => {
         const coordinate = coordinates[regionNames[i]];
         const points = _.map(coordinate, xy);
 
