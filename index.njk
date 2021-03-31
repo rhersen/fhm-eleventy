@@ -24,11 +24,15 @@
     <tr>
         <th>Region</th>
         <th>14</th>
+        <th>7</th>
+        <th>%</th>
     </tr>
     {% for row in fhm.cases.latest.rows %}
-        <tr bgcolor={{ row.bgcolor }}>
-            <td>{{ row.regionName }}</td>
-            <td>{{ row.value | round }}</td>
+        <tr>
+            <th>{{ row.regionName }}</th>
+            <td style={{ 'background-color:' + row.bgcolor }}>{{ row.value | round }}</td>
+            <td style={{ 'background-color:' + row.entry7.bgcolor }}>{{ row.entry7.value | round }}</td>
+            <td style={{ 'background-color:' + row.entryDiff.bgcolor }}>{{ row.entryDiff.value | round }}</td>
         </tr>
     {% endfor %}
 </table>

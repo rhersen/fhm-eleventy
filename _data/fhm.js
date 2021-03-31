@@ -33,20 +33,24 @@ module.exports = async () => {
   const width = 800;
   const height = 600;
   const max = 1400;
+  const cells7 = addColor(values7, "7").reverse();
+  const cellsDiff = addColor(diff(cells, 7), "diff").reverse();
   const cells14 = addColor(
     divideValuesByPopulation(sum(cells, 14), columns, population, 1e5),
     "14"
   ).reverse();
 
+  const latest7 = _.first(cells7);
+  const latestDiff = _.first(cellsDiff);
   const latest14 = _.first(cells14);
 
   return {
     cases: {
       columns,
       rows: rows.reverse(),
-      cells7: addColor(values7, "7").reverse(),
+      cells7,
       cells14,
-      cellsDiff: addColor(diff(cells, 7), "diff").reverse(),
+      cellsDiff,
       charts: columns.map((column, columnIndex) => ({
         region: column.toLowerCase(),
         width,
@@ -61,6 +65,8 @@ module.exports = async () => {
         rows: _.sortBy(
           _.map(latest14, (entry, i) => ({
             ...entry,
+            entry7: latest7[i],
+            entryDiff: latestDiff[i],
             regionName: regionNames[i],
           })),
           ({ value }) => -value
