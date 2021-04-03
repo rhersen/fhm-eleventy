@@ -64,8 +64,8 @@ module.exports = (arrays, table = "14") =>
     }))
   );
 
-function bgcolor(value, table14) {
-  for (let i = 0; i < table14.length; i += 2)
-    if (value < table14[i + 1]) return table14[i];
-  return _.last(table14);
+function bgcolor(value, table) {
+  for (let i = 0; i < table.length; i += 2)
+    if (value < table[i + 1]) return table[i];
+  if (_.isFinite(value)) return _.last(table);
 }
