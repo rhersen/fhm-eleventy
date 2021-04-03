@@ -34,7 +34,11 @@ module.exports = async () => {
   const height = 600;
   const max = 1400;
   const cells7 = addColor(values7, "7").reverse();
-  const cellsDiff = addColor(diff(cells, 7), "diff").reverse();
+  const cellsDiff = addColor(
+    diff(cells, 7).filter((cell, i) => i % 7 === 0),
+    "diff"
+  ).reverse();
+
   const cells14 = addColor(
     divideValuesByPopulation(sum(cells, 14), columns, population, 1e5),
     "14"

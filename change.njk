@@ -27,7 +27,7 @@
         <span class="region">{{ region }}</span>
     {% endfor %}
     {% for cellArray in fhm.cases.cellsDiff %}
-        <span>{{ fhm.cases.rows[loop.index0] }}</span>
+        <span>{{ fhm.cases.rows[loop.index0 * 7] }}</span>
         {% for cell in cellArray %}
             <span class="cell" style={{ 'background-color:' + cell.bgcolor }}>{{ cell.value | round }}</span>
         {% endfor %}
