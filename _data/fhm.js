@@ -23,7 +23,8 @@ async function getBook() {
 const regionNames = _.keys(population);
 
 module.exports = async () => {
-  const { columns, rows, cells } = cases(await getBook());
+  const book = await getBook();
+  const { columns, rows, cells } = cases(book);
   const values7 = divideValuesByPopulation(
     sum(cells, 7),
     columns,
@@ -48,6 +49,7 @@ module.exports = async () => {
   const latest14 = _.first(cells14);
 
   return {
+    timestamp: _.last(_.keys(book.Sheets)),
     cases: {
       columns,
       rows: rows.reverse(),
