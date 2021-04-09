@@ -1,0 +1,38 @@
+html(lang="sv")
+  head
+    meta(name="viewport", content="width=device-width, initial-scale=1.0")
+    title fhm-eleventy
+    style.
+      td {
+        color: white;
+      }
+      td:last-child {
+        color: darkmagenta;
+      }
+  body
+    nav
+      ul
+        li
+          a(href="/") Hem
+        li
+          a(href="/7") 7 dagars rullande medelvärde per miljon
+        li
+          a(href="/14") 14 dagars fall per 100000
+        li
+          a(href="/change") senaste 7 dagarna jämfört med de 7 föregående
+        li
+          a(href="/map") karta
+        li
+          a(href="/charts/totalt_antal_fall") diagram över 7 dagars rullande medelvärde per miljon
+    table
+      tr
+        th Region
+        th 14
+        th 7
+        th %
+      each row in fhm.cases.latest.rows
+        tr
+          th= row.regionName
+          td(style='background-color:' + row.bgcolor)= Math.round(row.value)
+          td(style='background-color:' + row.entry7.bgcolor)= Math.round(row.entry7.value)
+          td(style='background-color:' + row.entryDiff.bgcolor)= Math.round(row.entryDiff.value)
