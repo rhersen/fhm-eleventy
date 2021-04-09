@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "clean": "rm -R _site",
     "build": "eleventy",
     "watch": "eleventy --watch",
     "serve": "eleventy --serve",

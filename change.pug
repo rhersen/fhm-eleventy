@@ -1,0 +1,29 @@
+html(lang="sv")
+  head
+    meta(name="viewport", content="width=device-width, initial-scale=1.0")
+    title senaste 7 dagarna jämfört med de 7 föregående
+    style.
+      .table {
+        display: grid;
+        grid-auto-flow: row;
+        grid-template-columns: max-content repeat(22, 1fr);
+      }
+
+      .region {
+        overflow: hidden;
+      }
+      .cell {
+        font-family: sans-serif;
+        color: darkmagenta;
+        overflow: hidden;
+        text-align: center;
+      }
+  body
+    .table
+      span Statistikdatum
+      each region in fhm.cases.columns
+        span.region= region
+      each cellArray, index in fhm.cases.cellsDiff
+        span= fhm.cases.rows[index * 7]
+        each cell in cellArray
+          span.cell(style='background-color:' + cell.bgcolor)= Math.round(cell.value)
