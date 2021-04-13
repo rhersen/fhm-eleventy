@@ -1,0 +1,63 @@
+---
+{
+  pagination: {
+    data: "fhm.cases.charts",
+    size: 1,
+    alias: "chart",
+  },
+  permalink: "| charts/#{ chart.region }/index.html",
+}
+---
+
+html(lang="sv")
+  head
+    meta(name="viewport", content="width=device-width, initial-scale=1.0")
+    title diagram över 7 dagars rullande medelvärde per miljon
+    style.
+      .chart {
+        display: grid;
+        grid-template-columns: max-content auto;
+      }
+
+      .chart .y-values {
+        grid-column: 2;
+        display: flex;
+        flex-direction: column-reverse;
+        justify-content: space-evenly;
+        margin: 12px;
+      }
+
+      .chart svg {
+        grid-column: 1;
+        height: 600px;
+        border: black 2px solid;
+      }
+
+      polyline {
+        stroke-width: 3px;
+        stroke: red;
+      }
+
+      .chart line {
+        stroke: #bbb;
+        stroke-width: 1;
+      }
+body
+  nav
+    a(href="/") Hem
+    br
+    each column in fhm.cases.columns
+      a(href=`/charts/${column.toLowerCase()}`)= column
+  .chart
+    svg(viewBox=`10 0 ${chart.width} ${chart.height}`)
+      polyline(fill="none", points=chart.points)
+      each yValue in chart.yValues
+        line(
+          x1="0",
+          y1=(yValue * chart.height) / chart.max,
+          x2=chart.width,
+          y2=(yValue * chart.height) / chart.max
+        )
+    .y-values
+      each yValue in chart.yValues
+        .y-value= yValue

@@ -60,11 +60,13 @@ module.exports = async () => {
         region: column.toLowerCase(),
         width,
         height,
-        max,
-        points: values7.map((a, rowIndex) => [
-          (rowIndex * width) / values7.length,
-          height - (a[columnIndex] * height) / max,
-        ]),
+        yValues: _.range(0, 1400, 100),
+        points: _.join(
+          _.map(values7, (a, rowIndex) => [
+            (rowIndex * width) / values7.length,
+            height - (a[columnIndex] * height) / max,
+          ])
+        ),
       })),
       latest: {
         rows: _.sortBy(
