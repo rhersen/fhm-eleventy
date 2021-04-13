@@ -60,7 +60,8 @@ module.exports = async () => {
         region: column.toLowerCase(),
         width,
         height,
-        yValues: _.range(0, 1400, 100),
+        max,
+        yValues: _.range(0, max, 100),
         points: _.join(
           _.map(_.slice(values7, 132), (a, rowIndex) => [
             (rowIndex * width) / (values7.length - 132),

@@ -49,7 +49,7 @@ body
     each column in fhm.cases.columns
       a(href=`/charts/${column.toLowerCase()}`)= column
   .chart
-    svg(viewBox=`10 0 ${chart.width} ${chart.height}`)
+    svg(viewBox=`0 0 ${chart.width} ${chart.height}`)
       polyline(fill="none", points=chart.points)
       each yValue in chart.yValues
         line(
