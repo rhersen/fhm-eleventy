@@ -61,7 +61,7 @@ module.exports = async () => {
         width,
         height,
         max,
-        yValues: _.range(0, max, 100),
+        yValues: _.range(100, max, 100),
         points: _.join(
           _.map(_.slice(values7, 132), (a, rowIndex) => [
             (rowIndex * width) / (values7.length - 132),
