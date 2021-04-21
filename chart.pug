@@ -49,6 +49,9 @@ body
     br
     each column in fhm.cases.columns
       a(href=`/charts/${column.toLowerCase()}`)= column
+      |
+      | /
+      |
   .chart
     svg(viewBox=`0 0 ${chart.width} ${chart.height}`)
       polyline(fill="none", points=chart.points)
