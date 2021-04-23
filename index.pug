@@ -3,10 +3,17 @@ html(lang="sv")
     include includes/meta.pug
     title fhm-eleventy
     style.
+      table {
+        font-family: sans-serif;
+      }
+      th {
+        text-align: right;
+      }
       td {
         color: white;
+        text-align: center;
       }
-      td:last-child {
+      td:nth-child(3) {
         color: darkmagenta;
       }
   body
@@ -28,12 +35,12 @@ html(lang="sv")
     table
       tr
         th Region
-        th 7
-        th 14
-        th %
+        th 7-dagars
+        th ändring i %
+        th 14-dagars
       each row in fhm.cases.latest.rows
         tr
           th= row.regionName
           td(style='background-color:' + row.bgcolor)= Math.round(row.value)
-          td(style='background-color:' + row.entry14.bgcolor)= Math.round(row.entry14.value)
           td(style='background-color:' + row.entryDiff.bgcolor)= Math.round(row.entryDiff.value)
+          td(style='background-color:' + row.entry14.bgcolor)= Math.round(row.entry14.value)
