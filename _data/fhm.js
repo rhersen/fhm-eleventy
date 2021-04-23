@@ -71,9 +71,9 @@ module.exports = async () => {
       })),
       latest: {
         rows: _.sortBy(
-          _.map(latest14, (entry, i) => ({
+          _.map(latest7, (entry, i) => ({
             ...entry,
-            entry7: latest7[i],
+            entry14: latest14[i],
             entryDiff: latestDiff[i],
             regionName: regionNames[i],
           })),

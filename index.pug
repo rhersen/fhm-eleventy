@@ -29,12 +29,12 @@ html(lang="sv")
     table
       tr
         th Region
-        th 14
         th 7
+        th 14
         th %
       each row in fhm.cases.latest.rows
         tr
           th= row.regionName
           td(style='background-color:' + row.bgcolor)= Math.round(row.value)
-          td(style='background-color:' + row.entry7.bgcolor)= Math.round(row.entry7.value)
+          td(style='background-color:' + row.entry14.bgcolor)= Math.round(row.entry14.value)
           td(style='background-color:' + row.entryDiff.bgcolor)= Math.round(row.entryDiff.value)
