@@ -1,0 +1,20 @@
+html(lang="sv")
+  head
+    include includes/meta.pug
+    title karta
+    style.
+      .map {
+        font-family: sans-serif;
+      }
+body
+  include includes/map-nav.pug
+  .map
+    svg(viewBox="10 0 15 15")
+      each region in fhm.cases.mapDiff
+        polygon(points=region.points, fill=region.bgcolor)
+        text(
+          x=region.center.x,
+          y=region.center.y + 0.2,
+          font-size="0.5",
+          text-anchor="middle"
+        )= Math.round(region.value)

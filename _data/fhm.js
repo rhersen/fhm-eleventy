@@ -80,31 +80,35 @@ module.exports = async () => {
           ({ value }) => -value
         ),
       },
-      map: _.map(latest14, ({ value, bgcolor }, i) => {
-        const coordinate = coordinates[regionNames[i]];
-        const points = _.map(coordinate, xy);
-
-        return {
-          value,
-          bgcolor,
-          points: points.toString(),
-          center: { x: centerX(points), y: centerY(points) },
-        };
-
-        function xy(coord) {
-          return [coord.x, 70 - coord.y];
-        }
-
-        function centerX(points) {
-          const values = points.map(([x]) => x);
-          return (Math.min(...values) + Math.max(...values)) / 2;
-        }
-
-        function centerY(points) {
-          const values = points.map(([, y]) => y);
-          return (Math.min(...values) + Math.max(...values)) / 2;
-        }
-      }),
+      map7: _.map(latest7, mapRegion),
+      map14: _.map(latest14, mapRegion),
+      mapDiff: _.map(latestDiff, mapRegion),
     },
   };
+
+  function mapRegion({ value, bgcolor }, i) {
+    const coordinate = coordinates[regionNames[i]];
+    const points = _.map(coordinate, xy);
+
+    return {
+      value,
+      bgcolor,
+      points: points.toString(),
+      center: { x: centerX(points), y: centerY(points) },
+    };
+
+    function xy(coord) {
+      return [coord.x, 70 - coord.y];
+    }
+
+    function centerX(points) {
+      const values = points.map(([x]) => x);
+      return (Math.min(...values) + Math.max(...values)) / 2;
+    }
+
+    function centerY(points) {
+      const values = points.map(([, y]) => y);
+      return (Math.min(...values) + Math.max(...values)) / 2;
+    }
+  }
 };

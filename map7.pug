@@ -7,9 +7,10 @@ html(lang="sv")
         font-family: sans-serif;
       }
 body
+  include includes/map-nav.pug
   .map
     svg(viewBox="10 0 15 15")
-      each region in fhm.cases.map
+      each region in fhm.cases.map7
         polygon(points=region.points, fill=region.bgcolor)
         text(
           x=region.center.x,
