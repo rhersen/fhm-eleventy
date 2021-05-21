@@ -1,4 +1,4 @@
-{% from "includes/map.njk" import map with context %}
+{% from "includes/map.njk" import map %}
 <html lang="sv">
   <head>
     <meta charset="utf-8" />
@@ -21,5 +21,5 @@
     /
     <a href="/map-change">förändring</a>
   </nav>
-  {{ map() }}
+  {{ map(fhm.cases.mapDiff) }}
 </body>
