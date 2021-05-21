@@ -1,26 +1,20 @@
 {% from "includes/map.njk" import map %}
 <html lang="sv">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>karta</title>
-    <style>
-      .map svg {
-        font-family: sans-serif;
-        height: 97%;
-      }
-    </style>
-  </head>
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>karta</title>
+  <style>
+    {% include "includes/map.css" %}
+  </style>
+</head>
 </html>
 <body>
-  <nav>
-    <a href="/">Hem</a>
-    /
-    <a href="/map14">14</a>
-    /
-    <a href="/map7">7</a>
-    /
-    <a href="/map-change">förändring</a>
-  </nav>
+<div class="container">
+  <a href="/">Hem</a>
+  <a href="/map14">14</a>
+  <a href="/map7">7</a>
+  <a href="/map-change">förändring</a>
   {{ map(fhm.cases.map7) }}
+</div>
 </body>
