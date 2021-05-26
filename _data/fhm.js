@@ -1,30 +1,25 @@
 const _ = require("lodash");
 const axios = require("axios");
-const xlsx = require("xlsx");
 const addColor = require("../src/addColor.js");
-const cases = require("../src/cases.js");
 const divideValuesByPopulation = require("../src/divideValuesByPopulation.js");
 const sum = require("../src/sum.js");
 const diff = require("../src/diff.js");
 const population = require("../src/population.js");
 const coordinates = require("../src/coordinates.js");
 
-async function getBook() {
+async function getCases() {
   const { data, status, statusText } = await axios.get(
-    "https://www.arcgis.com/sharing/rest/content/items/b5e7488e117749c19881cce45db13f7e/data",
-    {
-      responseType: "arraybuffer",
-    }
+    "http://fohm.hersen.name"
   );
-  console.log(status, statusText, data.length, "bytes");
-  return xlsx.read(data);
+  console.log(status, statusText);
+  return data;
 }
 
 const regionNames = _.keys(population);
 
 module.exports = async () => {
-  const book = await getBook();
-  const { columns, rows, cells } = cases(book);
+  const cases = await getCases();
+  const { columns, rows, cells } = cases;
   const values7 = divideValuesByPopulation(
     sum(cells, 7),
     columns,
@@ -49,7 +44,7 @@ module.exports = async () => {
   const latest14 = _.first(cells14);
 
   return {
-    timestamp: _.last(_.keys(book.Sheets)),
+    timestamp: cases.heading,
     cases: {
       columns,
       rows: rows.reverse(),
