@@ -9,7 +9,7 @@ const coordinates = require("../src/coordinates.js");
 
 async function getCases() {
   const { data, status, statusText } = await axios.get(
-    "http://fohm.hersen.name"
+    "https://secure.hersen.name/fohm"
   );
   console.log(status, statusText);
   return data;
