@@ -1,5 +1,5 @@
 module.exports = {
-  Totalt_antal_fall: 10230000,
+  Totalt_antal_fall: 10350000,
   Blekinge: 159748,
   Dalarna: 287795,
   Gotland: 59636,

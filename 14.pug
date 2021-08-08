@@ -11,4 +11,4 @@ html(lang="sv")
       each cellArray, index in fhm.cases.cells14
         span= fhm.cases.rows[index]
         each cell in cellArray
-          span.cell(style='background-color:' + cell.bgcolor)= Math.round(cell.value)
+          span.cell(style='background-color:' + cell.bgcolor)= Math.round(cell.value * 1e2) / 1e2
